@@ -1,10 +1,10 @@
 ################################
 ## Team  : Toroia             ##
-## Image : php7.0-fpm         ##
+## Image : php-fpm:7.0        ##
 ################################
 
 # Dépendance de l'image 
-FROM toroia/php7.0-cli
+FROM toroia/php-cli:7.0
 
 # Mainteneur de l'image
 MAINTAINER ToroiaTeam "contact@toroia.fr"
@@ -18,14 +18,18 @@ RUN apt-get update && \
 # Suppression des fichiers inutiles
 RUN rm -Rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
 
+# Ajout des permissions
+RUN usermod -u 1000 www-data
+
 # Ajout de plusieurs paramètres à PHP FPM
 COPY overrides.conf /etc/php/7.0/fpm/pool.d/z-overrides.conf
 
 # Copie du script de démarrage PHP FPM
-COPY php7.0-fpm /usr/bin/php7.0-fpm
+COPY php-fpm /usr/bin/php-fpm
+RUN chmod 770 /usr/bin/php-fpm
+
+# Démarrage de PHP FPM
+CMD /usr/bin/php-fpm
 
 # Exposition du port PHP FPM
 EXPOSE 9000
-
-# Démarrage de PHP FPM
-CMD /usr/bin/php7.0-fpm

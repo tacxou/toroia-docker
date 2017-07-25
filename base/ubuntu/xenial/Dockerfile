@@ -1,10 +1,10 @@
 ################################
 ## Team  : Toroia             ##
-## Image : base-debian        ##
+## Image : base-ubuntu:xenial ##
 ################################
 
 # Dépendance de l'image 
-FROM debian:jessie
+FROM ubuntu:xenial
 
 # Mainteneur de l'image
 MAINTAINER ToroiaTeam "contact@toroia.fr"
@@ -18,7 +18,7 @@ RUN apt-get upgrade -y && apt-get dist-upgrade -y
 
 # Installation des programmes de base
 # Nettoyage des paquets
-RUN apt-get -y --no-install-recommends install curl ca-certificates nano && \
+RUN apt-get -y install software-properties-common curl ca-certificates nano && \
     apt-get -y -q autoclean && \
     apt-get -y -q autoremove
 

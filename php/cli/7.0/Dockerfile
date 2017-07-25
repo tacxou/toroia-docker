@@ -1,6 +1,6 @@
 ################################
 ## Team  : Toroia             ##
-## Image : php7.0-cli         ##
+## Image : php-cli:7.0        ##
 ################################
 
 # Dépendance de l'image 
@@ -31,4 +31,3 @@ RUN rm -Rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/* ~/.composer
 
 # Démarrage de PHP CLI
 CMD ["php", "-a"]
-
